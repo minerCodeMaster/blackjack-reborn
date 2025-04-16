@@ -202,7 +202,6 @@ async function stand() {
                 dealerHit();
             }
             hitting = true;
-            await sleep(1000);
             dealerState.textContent = "3";
             await sleep(1000);
             dealerState.textContent = "2";

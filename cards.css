@@ -37,7 +37,6 @@
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    margin-top: 20px;
 }
 
 .midButton{
@@ -54,3 +53,22 @@
 .midButton:active{
     font-size: 130%;
 }
+
+.moneyInput {
+    width: 250px;
+    font-size: 24px;
+    padding: 4px 8px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background-color: #f4f4f4;
+    color: #333;
+    outline: none;
+    text-align: left; /* Text zarovnaný napravo, jako u čísla */
+    transition: all 0.3s ease;
+  }
+  
+  .moneyInput:focus {
+    border-color: black; /* Zelená při zaostření */
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.3); /* Jemný stín */
+  }
+  
