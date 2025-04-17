@@ -57,7 +57,7 @@ let deck = [
 ];
 
 let drawnCards = [];
-let DealerDrawnCards = [];
+let dealerDrawnCards = [];
 let hasDrawn = false;
 const player = document.getElementById('player');
 const dealer = document.getElementById('dealer');
@@ -87,10 +87,9 @@ async function hit() {
             return;
         } else {
             // PLAYER DRAW
-            let index = Math.floor(Math.random() * deck.length);
-            let card = deck[index];
+            let card = deck[Math.floor(Math.random()*deck.length)];
             deck.splice(index, 1); 
-            console.log(card);
+            // console.log(card);
             drawnCards.push(card);
             player.textContent = ""
             for (singleCard of drawnCards) {
@@ -130,23 +129,22 @@ async function dealerHit() {
     } else {
         if (dealerScore < 17) {
             // DEALER DRAW
-            let index = Math.floor(Math.random() * deck.length);
-            let card = deck[index];
+            let card = deck[Math.floor(Math.random() * deck.length)];
             deck.splice(index, 1); 
-            console.log(card.card + " " + card.value + " (dealer's)");
+            //console.log(card.card + " " + card.value + " (dealer's)");
             dealerScore += card.value;
-            DealerDrawnCards.push(card);
+            dealerDrawnCards.push(card);
             dealerState.textContent = "Dealer is drawing";
-            dealerScore = DealerDrawnCards.reduce((score, card) => score + card.value, 0);
+            dealerScore = dealerDrawnCards.reduce((score, card) => score + card.value, 0);
             
-            if (dealerScore > 21 && DealerDrawnCards.some(card => card.value === 11)) {
+            if (dealerScore > 21 && dealerDrawnCards.some(card => card.value === 11)) {
                 dealerScore -= 10;
             }
 
             dealer.textContent = ""; // Vyčistí předchozí obsah
 
             if (hasDrawn === false) {
-                for (let card of DealerDrawnCards) {
+                for (let card of dealerDrawnCards) {
                     let cardElement = document.createElement('span');
                     cardElement.innerText = card.card;
                     if (card.card.includes("♥") || card.card.includes("♦")) {
@@ -158,17 +156,16 @@ async function dealerHit() {
                 }
                 hasDrawn = true;
             } else {
-                let firstCard = DealerDrawnCards[0];
                 let firstCardElement = document.createElement('span');
-                firstCardElement.innerText = firstCard.card;
-                if (firstCard.card.includes("♥") || firstCard.card.includes("♦")) {
+                firstCardElement.innerText = dealerDrawnCards[0].card;
+                if (dealerDrawnCards[0].card.includes("♥") || dealerDrawnCards[0].card.includes("♦")) {
                     firstCardElement.className = "redCard";
                 } else {
                     firstCardElement.className = "blackCard";
                 }
                 dealer.appendChild(firstCardElement);
 
-                for (let i = 1; i < DealerDrawnCards.length; i++) {
+                for (let i = 1; i < dealerDrawnCards.length; i++) {
                     let hiddenCard = document.createElement('span');
                     hiddenCard.innerText = " ???";
                     hiddenCard.className = "idkCard";
@@ -190,7 +187,7 @@ async function stand() {
     try {
         if (typeof userBet === 'undefined') {
             dealerState.innerText = "choose a bet!";
-            await sleep(1000);
+            await sleep(5000);
             dealerState.innerText = "";
             return;
         }
@@ -210,7 +207,7 @@ async function stand() {
             await sleep(1000);
             hitting = false;
             dealer.innerHTML = "";
-            for (let card of DealerDrawnCards) {
+            for (let card of dealerDrawnCards) {
                 let cardElement = document.createElement('span');
                 cardElement.innerText = card.card;
                 if (card.card.includes("♥") || card.card.includes("♦")) {
