@@ -1,4 +1,4 @@
-const deck = [
+let deck = [
     { card: '2♥', value: 2 },
     { card: '3♥', value: 3 },
     { card: '4♥', value: 4 },
