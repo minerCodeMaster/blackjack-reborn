@@ -1,6 +1,7 @@
 .redCard,
 .blackCard,
-.idkCard {
+.idkCard,
+.blankCard {
   width: 100px;
   height: 150px;
   border-radius: 10px;
@@ -13,23 +14,26 @@
   padding-left: 4px;
   padding-right: 4px;
   margin: 20px;
+  border: 3px solid gray;
 }
 
 .redCard {
   background-color: red;
   color: white;
-  border: 3px solid gray;
 }
 .blackCard {
   background-color: black;
   color: white;
-  border: 3px solid gray;
 }
 
 .idkCard {
     background-color: green;
     color: black;
-    border: 3px solid gray;
+}
+
+.blankCard {
+  background-color: gray;
+  color: black;
 }
 
 .cardShower {
